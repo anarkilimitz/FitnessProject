@@ -147,7 +147,7 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     });
 // всплытие модалки через 3 секунды автоматически
-    // const modalTimerId = setTimeout(openModal, 3000);
+    const modalTimerId = setTimeout(openModal, 3000);
 
 // запускаем модалку при прокрутке страницы до конца
     function showModalByScroll() {
