@@ -45,7 +45,7 @@ window.addEventListener('DOMContentLoaded', () => {
     });
 // ----------------- Таймер обратного отсчета ----------------------------
 
-    const deadline = '2024-12-19';
+    const deadline = '2024-12-29';
 
     function getTimeRemaining(endtime) {
         let days, hours, minutes, seconds;
@@ -151,7 +151,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 // запускаем модалку при прокрутке страницы до конца
     function showModalByScroll() {
-        if (window.scrollY + document.documentElement.clientHeight >= document.documentElement.scrollHeight -1) {
+        if (window.scrollY + document.documentElement.clientHeight >= document.documentElement.scrollHeight -5) {
             openModal();
             window.removeEventListener('scroll', showModalByScroll); // удаляем запуск модалки после первого появления, чтобы второй раз не запускалась
         }
