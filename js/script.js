@@ -45,7 +45,7 @@ window.addEventListener('DOMContentLoaded', () => {
     });
 // ----------------- Таймер обратного отсчета ----------------------------
 
-    const deadline = '2024-12-19';
+    const deadline = '2025-12-19';
 
     function getTimeRemaining(endtime) {
         let days, hours, minutes, seconds;
