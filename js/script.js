@@ -45,7 +45,7 @@ window.addEventListener('DOMContentLoaded', () => {
     });
 // ----------------- Таймер обратного отсчета ----------------------------
 
-    const deadline = '2025-12-19';
+    const deadline = '2024-12-19';
 
     function getTimeRemaining(endtime) {
         let days, hours, minutes, seconds;
@@ -229,4 +229,52 @@ window.addEventListener('DOMContentLoaded', () => {
         12,
         ".menu .container" // родительский селектор ЧЕРЕЗ ПРОБЕЛ !!!
     ).render();
+
+    // ---------------------  ФОРМЫ  -----------------------------------------------------------------
+
+    const forms = document.querySelectorAll('form');
+
+    const message = {
+        loading: 'Загрузка',
+        success: 'Спасибо! Скоро мы с вами свяжемся.',
+        failure: 'Что-то пошло не так...'
+    };
+
+    forms.forEach(item => {
+        postData(item);
+    });
+
+    function postData(form) {
+        form.addEventListener('submit', (e) => {   // навешиваем событие отправки submit на кнопку отправки
+            e.preventDefault();  // событие чтобы страница не перезагружалась
+
+            const statusMessage = document.createElement('div');
+            statusMessage.classList.add('status');  // добавляем класс
+            statusMessage.textContent = message.loading; // показываем сообщение ЗАГРУЗКА
+            form.append(statusMessage); // отправить сообщение на страницу к форме
+
+            const request = new XMLHttpRequest();
+            request.open('POST', 'server.php');
+
+            // request.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+            const formData = new FormData(form);
+
+            request.send(formData);  // метод отправки данных на сервер
+
+            request.addEventListener('load', () => {  // мы отслеживаем конечную загрузку конечного запроса
+                if (request.status === 200) {
+                    console.log(request.response);
+                    statusMessage.textContent = message.success; // когда произошла загрузка, выводим сообщение выше
+                    form.reset(); // удаляем сообщение
+                    statusMessage.remove(() => {
+                        setTimeout(() => {
+                            
+                        }, 2000); // через 2 секунды
+                    })
+                } else {
+                    statusMessage.textContent = message.failure; // иначе это сообщение
+                }
+            })
+        });
+    }
 });
