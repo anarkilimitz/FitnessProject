@@ -255,7 +255,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 margin: 0 auto;
             `;
 //            form.append(statusMessage); // отправить сообщение на страницу к форме
-            form.insertAdjacentElement('afterend', 'statusMessage'); // отправить сообщение на страницу к форме
+            form.insertAdjacentElement('afterend', statusMessage); // отправить сообщение на страницу к форме
 
             const request = new XMLHttpRequest();
             request.open('POST', 'server.php');
